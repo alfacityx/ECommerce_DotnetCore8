@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Category>
+@{
+    foreach (var anaKategori in Model.Where(x=> x.ParentId==0))//Kategorileri Burada foreach ile dönerek ekrana bastırdık ve lambda sorgusu ile kategorileri neye göre sıralayacağımızı yazdık.
+    {
+        <div class="dropdown">
+            <a class=" dropdown-toggle nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                @anaKategori.Name 
+            </a>
+            @if (Model.Where(x => x.ParentId == anaKategori.Id) is not null && Model.Where(x => x.ParentId == anaKategori.Id).Count() > 0)
+            {
+                <ul class="dropdown-menu">
+                    @foreach (var altKategori in Model.Where(x => x.ParentId == anaKategori.Id)) //Burada üst kategorisini ana kategori olarak seçenleri listeledik
+                    {
+                        <li><a class="dropdown-item" href="/Categories/Index/@altKategori.Id">@altKategori.Name</a></li>
+                        //Burada ise /Categories/Index/@altKategori.Id ile categori indexten gelen ıd değeri ile eşleşen categoriyi bulup o kategoriyi ve ürünlerini bastırıcaz.
+                    }
+
+                </ul>
+            }
+           
+        </div>
+    }
+}

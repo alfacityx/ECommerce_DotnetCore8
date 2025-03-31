@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Arka plan -->
+  <rect width="400" height="400" rx="15" ry="15" fill="#FF6DB8" />
+  
+  <!-- İç çerçeve -->
+  <rect x="15" y="15" width="370" height="370" rx="10" ry="10" fill="#FFFFFF" fill-opacity="0.1" stroke="#FFFFFF" stroke-width="1.5"/>
+  
+  <!-- Kozmetik simgeleri -->
+  <circle cx="200" cy="130" r="45" fill="#FFFFFF" />
+  <rect x="180" y="130" width="40" height="10" rx="5" ry="5" fill="#FF6DB8" />
+  <rect x="187" y="85" width="25" height="45" rx="12" ry="12" fill="#FF6DB8" />
+  
+  <!-- Ruj simgesi -->
+  <rect x="240" y="120" width="12" height="40" rx="6" ry="6" fill="#FFFFFF" />
+  <rect x="240" y="110" width="12" height="10" rx="2" ry="2" fill="#FFFFFF" />
+  
+  <!-- Fırça simgesi -->
+  <rect x="150" y="115" width="5" height="40" rx="2" ry="2" fill="#FFFFFF" />
+  <path d="M145,115 Q150,100 155,115" fill="#FFFFFF" />
+  
+  <!-- Kategori başlığı -->
+  <text x="200" y="220" font-family="Arial, sans-serif" font-weight="bold" font-size="30" fill="#FFFFFF" text-anchor="middle">KOZMETİK</text>
+  
+  <!-- İndirim bilgisi -->
+  <rect x="100" y="240" width="200" height="60" rx="10" ry="10" fill="#FFFFFF" />
+  <text x="200" y="275" font-family="Arial, sans-serif" font-weight="bold" font-size="30" fill="#FF6DB8" text-anchor="middle">%40 İNDİRİM</text>
+  
+  <!-- Alt bilgi -->
+  <text x="200" y="330" font-family="Arial, sans-serif" font-size="20" fill="#FFFFFF" text-anchor="middle">Seçili Ürünlerde Geçerli</text>
+  <text x="200" y="360" font-family="Arial, sans-serif" font-weight="bold" font-size="18" fill="#FFFFFF" text-anchor="middle">KODU KULLAN: KOZ40</text>
+</svg>

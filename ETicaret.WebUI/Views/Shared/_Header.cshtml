@@ -1,0 +1,67 @@
+﻿<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+       
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+               <img src="/Img/resim.png" alt="" height="50" width="75"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-evenly">
+                <form action="/Products" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input name="q" type="search" class="form-control" placeholder="Ürün Ara..." aria-label="Search">
+                </form>
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Anasayfa</a>
+                    </li>
+                    @* Burada Category componentini çağırarak içerisindeki kategorileri ekrana bastırdık *@
+                    @await Component.InvokeAsync("Categories") 
+                </ul>
+                @* Sistemdeki kullanıcı oturum açtı mı açmadı mı *@
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-fill"></i> Hesabım
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/Account/MyOrders">Tüm Siparişlerim</a></li>
+                            <li><a class="dropdown-item" href="/MyAdresses/Index">Kayıtlı Adreslerim</a></li>
+                            <li><a class="dropdown-item" href="/Account/Index">Kullanıcı Bilgilerim</a></li>
+                            <li class="text-center"><a class="btn btn-danger" href="/Account/SignOut">Çıkış Yap</a></li>
+
+                        </ul>
+                    </div>
+                    
+                }else
+                {
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person"></i> Giriş Yap
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/Account/SignIn">Giriş</a></li>
+                            <li><a class="dropdown-item" href="/Account/SignUp">Kayıt Ol</a></li>
+
+                        </ul>
+                    </div>
+                        
+                }
+                <div class="dropdown mx-3">
+                    <a class=" nav-link text-dark" href="/Favorites">
+                        <i class="bi bi-bag-heart-fill"></i> Favorilerim
+                    </a>
+                </div>
+                <div class="dropdown ms-1">
+                    <a class=" nav-link text-dark" href="/Cart">
+                        <i class="bi bi-basket-fill"></i> Sepet
+                    </a>
+                </div>
+                <a class="nav-link text-dark mx-3" asp-controller="Home" asp-action="ContactUs">İletişim</a>
+            </div>
+        </div>
+    </nav>
+</header>
