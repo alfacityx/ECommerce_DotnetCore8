@@ -1,9 +1,10 @@
-﻿<header>
+﻿@using ETicaret.WebUI.ExtensionMethods
+<header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-       
+
         <div class="container">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-               <img src="/Img/resim.png" alt="" height="50" width="75"/>
+                <img src="/Img/resim.png" alt="" height="50" width="75" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +19,7 @@
                         <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Anasayfa</a>
                     </li>
                     @* Burada Category componentini çağırarak içerisindeki kategorileri ekrana bastırdık *@
-                    @await Component.InvokeAsync("Categories") 
+                    @await Component.InvokeAsync("Categories")
                 </ul>
                 @* Sistemdeki kullanıcı oturum açtı mı açmadı mı *@
                 @if (Context.User.Identity.IsAuthenticated)
@@ -35,8 +36,9 @@
 
                         </ul>
                     </div>
-                    
-                }else
+
+                }
+                else
                 {
                     <div class="dropdown">
                         <a class="dropdown-toggle nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,17 +50,62 @@
 
                         </ul>
                     </div>
-                        
+
                 }
                 <div class="dropdown mx-3">
-                    <a class=" nav-link text-dark" href="/Favorites">
-                        <i class="bi bi-bag-heart-fill"></i> Favorilerim
-                    </a>
+                    @{
+                        var favorites = Context.Session.GetJson<List<Product>>("GetFavorites");
+                        if (favorites != null && favorites.Count > 0)
+                        {
+                            <a class="nav-link text-dark" href="/Favorites">
+                                <i class="bi bi-star-fill"></i> Favorilerim
+                                <span class="badge bg-danger text-white ms-1 rounded-pill">
+                                    @favorites.Count
+                                </span>
+                            </a>
+
+                        }
+                        else
+                        {
+                            <a class=" nav-link text-dark" href="/Favorites">
+                                <i class="bi bi-star-fill"></i> Favorilerim
+                            </a>
+                        }
+                    }
                 </div>
                 <div class="dropdown ms-1">
-                    <a class=" nav-link text-dark" href="/Cart">
-                        <i class="bi bi-basket-fill"></i> Sepet
-                    </a>
+                    @{
+                        var cart = Context.Session.GetJson<ETicaret.Service.Concrete.CartService>("Cart");
+                        if (cart != null && cart.CartLines.Count > 0)
+                        {
+                            <a class="dropdown-toggle nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-bag-heart-fill"></i> Sepetim
+                                <span class="badge bg-warning text-white ms-1 rounded-pill">
+                                    @cart.CartLines.Count
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach (var item in cart.CartLines)
+                                {
+                                    <li>
+                                        <a class="dropdown-item" href="/Products/Details/@item.Product.Id">
+                                            <img src="/Img/Products/@item.Product.Image" alt="" height="40" />
+                                            @item.Product.Name
+                                        </a>
+                                    </li>
+
+                                }
+                                <li class="text-center"><a class="btn btn-warning m-auto" href="/Cart">Sepete Git</a></li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <a class=" nav-link text-dark" href="/Cart">
+                                <i class="bi bi-bag-heart-fill"></i> Sepetim
+                            </a>
+                        }
+
+                    }
                 </div>
                 <a class="nav-link text-dark mx-3" asp-controller="Home" asp-action="ContactUs">İletişim</a>
             </div>
