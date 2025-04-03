@@ -22,7 +22,7 @@ Bu proje, .NET Core 8 teknolojisi kullanılarak geliştirilmiş modern bir e-tic
 
 ## ✨ Özellikler
 
-- 🔄 Clean Architecture mimarisi
+- 🔄 N-Tier mimarisi
 - 📦 Repository ve Unit of Work desenleri
 - 🧩 MediatR ile CQRS yapısı
 - 🔒 Kapsamlı kullanıcı yetkilendirme ve kimlik doğrulama
