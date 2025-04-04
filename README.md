@@ -38,7 +38,7 @@ Bu proje, .NET Core 8 teknolojisi kullanılarak geliştirilmiş modern bir e-tic
 
 - **.NET Core 8** - Ana framework
 - **Entity Framework Core** - ORM 
-- **Blazor** - UI framework
+- **Boostrap** - UI
 - **FluentValidation** - Doğrulama kütüphanesi
 - **SQL Server** - Veritabanı
 - **SignalR** - Gerçek zamanlı iletişim
